@@ -52,7 +52,7 @@ for i in range(len(origLines)):
 	denominator = math.sqrt(origReal*origReal + origImag*origImag)
 
 	if(denominator == 0):
- 		e = 1.0
+		e = 1.0
 	elif(math.isnan(nominator) or (math.isnan(denominator))):
 		e = 1.0
 	elif ((nominator / denominator > 1)):

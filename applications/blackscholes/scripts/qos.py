@@ -41,19 +41,19 @@ for i in range(len(origLines)):
 	origPrice 	= float(origLine)
 	nnPrice 	= float(nnLine)
 
- 	nominator   = abs(origPrice - nnPrice)
- 	denominator = abs(origPrice)
+	nominator   = abs(origPrice - nnPrice)
+	denominator = abs(origPrice)
 
- 	if(denominator == 0):
- 		e = 1.0
- 	elif(math.isnan(nominator) or (math.isnan(denominator))):
- 		e = 1.0
- 	elif ((nominator / denominator > 1)):
- 		e = 1.0
- 	else:
- 		e = nominator / denominator
+	if(denominator == 0):
+		e = 1.0
+	elif(math.isnan(nominator) or (math.isnan(denominator))):
+		e = 1.0
+	elif ((nominator / denominator > 1)):
+		e = 1.0
+	else:
+		e = nominator / denominator
 
- 	absError += e
+	absError += e
 pass;
 
 print(bcolors.FAIL	+ "*** Error: %1.8f" % (absError/float(len(origLines))) + bcolors.ENDC)
