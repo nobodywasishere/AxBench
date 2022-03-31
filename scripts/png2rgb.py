@@ -11,7 +11,7 @@ import csv
 def png2rgb(file):
     r=png.Reader(file);
     img = r.asRGB()
-    print(file, img)
+    print((file, img))
     return img
 pass
 
@@ -67,7 +67,7 @@ def rgbload(file):
         if (i == 0):
             width = int(row[0])
             height = int(row[1])
-            print(width, height)
+            print((width, height))
         elif (i == height + 1):
             meta = row[0]
             print(meta)
@@ -80,7 +80,7 @@ def rgbload(file):
         i = i + 1
     pass
     
-    print(width, height, meta)
+    print((width, height, meta))
     return(width, height, pixels, meta)
 pass
 
@@ -89,7 +89,7 @@ pass
 if __name__ == '__main__':
     if (len(sys.argv) < 4):
         print('Error: Oops! Too few arguments!')
-        print('Usage: ' + sys.argv[0] + ' OPERATION INPUT_FILE OUTPUT_FILE')
+        print(('Usage: ' + sys.argv[0] + ' OPERATION INPUT_FILE OUTPUT_FILE'))
         exit(-1)
     pass
 

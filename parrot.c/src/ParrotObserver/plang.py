@@ -8,7 +8,7 @@ Created on Jul 24, 2012
 
 import argparse
 
-from ParrotC import ParrotC
+from .ParrotC import ParrotC
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -24,12 +24,12 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     if (args.action == None):
-        print 'Error! Oops: Please specify the action!'
+        print('Error! Oops: Please specify the action!')
         exit(-1)
     pass
 
     if (args.extcmd == None):
-        print 'Error! Oops: Please specify the external compilation command!'
+        print('Error! Oops: Please specify the external compilation command!')
         exit(-1)
     pass
 

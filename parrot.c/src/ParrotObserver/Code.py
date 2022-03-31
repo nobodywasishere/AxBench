@@ -42,7 +42,7 @@ class Code(object):
         try:
             parrotName = m.group(1)
             parrotArgs = self.parseParrotArgs(m.group(2))
-            print parrotArgs
+            print(parrotArgs)
 
             return [True, parrotName, parrotArgs]
         except:
@@ -57,12 +57,12 @@ class Code(object):
 
         parrotArgs = []
         for a in args:
-            print '-'*32
-            print a
+            print('-'*32)
+            print(a)
             m = re.match('^\s*(\[(.+)\])?\s*(<(.+);(.+)>)?\s*(.+)$', a)
 
             features = [m.group(6), m.group(2), m.group(4), m.group(5)]
-            print features
+            print(features)
             for i in range(len(features)):
                 if ((features[i] == None) and (i != 1)):
                     features[i] = '0'
@@ -76,7 +76,7 @@ class Code(object):
             pass
 
             parrotArgs.append((features[0], features[1], (features[2], features[3])))
-            print parrotArgs[-1]
+            print(parrotArgs[-1])
         pass
     
         return parrotArgs
@@ -139,7 +139,7 @@ class Code(object):
                         errMsg += str(inputLoc + 1) + ' "' + inputParrotInfo[1] + '"' 
                         errMsg += ' and line ' + str(i + 1) + ' "' + outputParrotInfo[1] + '"!' 
                         
-                        print errMsg    
+                        print(errMsg)    
                         return False
                     pass
                     inputParrotInfo[0] = inputLoc
@@ -185,7 +185,7 @@ class Code(object):
                     
     def cppCompiler(self, extCmd, outFileName):
         cmd = extCmd + ' ' + self.tempFiles[-1] + ' -o ' + outFileName
-        print cmd
+        print(cmd)
         os.system(cmd)
     pass 
 

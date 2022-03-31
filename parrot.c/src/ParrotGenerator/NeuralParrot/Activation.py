@@ -65,8 +65,8 @@ f = {
 }
 
 if __name__ == '__main__':
-    print f['sigmoid'][0](-100, 10)
-    print f['sigmoid'][1](-100, f['sigmoid'][0](-100, 10), 10)
+    print(f['sigmoid'][0](-100, 10))
+    print(f['sigmoid'][1](-100, f['sigmoid'][0](-100, 10), 10))
     
     exit(0)
 pass

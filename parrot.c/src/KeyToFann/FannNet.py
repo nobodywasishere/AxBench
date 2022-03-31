@@ -4,8 +4,8 @@ Created on Jul 26, 2012
 @author: hadianeh
 '''
 
-from JsonCloak.JsonCloak import JsonCloak
-from NeuralParrot.NeuralNet import NeuralNet
+from .JsonCloak.JsonCloak import JsonCloak
+from .NeuralParrot.NeuralNet import NeuralNet
 import re
 
 class FannNet(object):
@@ -19,7 +19,7 @@ class FannNet(object):
         try:
             f = open(path)
         except:
-            print 'Error: Oops! Cannot open ' + path +'!'
+            print('Error: Oops! Cannot open ' + path +'!')
             return False
         pass
 
@@ -89,7 +89,7 @@ class FannNet(object):
         for l in self.nn.neurons:
             for n in l:
                 for j in range(len(n.w)):
-                    print synapses[i]
+                    print(synapses[i])
                     n.w[j] = synapses[i][1]
                     i += 1
                 pass
@@ -105,7 +105,7 @@ class FannNet(object):
     def saveEssence(self, path):
         try: f = open(path, 'w')
         except:
-            print 'Error: Oops! Cannot open ' + path +'!'
+            print('Error: Oops! Cannot open ' + path +'!')
             return False
         pass
 
@@ -168,19 +168,19 @@ if __name__ == '__main__':
     exit()
     x = [-1, -1]
     y = fannNet.nn.compute(x)
-    print x, y
+    print(x, y)
 
     x = [-1, 1]
     y = fannNet.nn.compute(x)
-    print x, y
+    print(x, y)
 
     x = [1, -1]
     y = fannNet.nn.compute(x)
-    print x, y
+    print(x, y)
 
     x = [1, 1]
     y = fannNet.nn.compute(x)
-    print x, y
+    print(x, y)
 
     exit(0)
 pass

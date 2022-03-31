@@ -99,24 +99,24 @@ pass
 
 if __name__ == '__main__':
     operand = Var('x', [0, 0])
-    print operand
+    print(operand)
     
     operand = Var('x', [1, 2, 3])
-    print operand
+    print(operand)
 
     operand = Var('w', [1, 2, 3, 4])
-    print operand
+    print(operand)
 
     operand = Var('m', [1, 3, 4])
-    print operand
+    print(operand)
     
     operand.fromList([])
-    print operand
+    print(operand)
 
     operand.fromList(['', '', ])
-    print operand
+    print(operand)
     
     operand.fromList(["w", "0.507315908911", 3, 1, 4, 37])
-    print operand
+    print(operand)
 pass
     

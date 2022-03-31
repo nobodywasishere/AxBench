@@ -18,7 +18,7 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 def printUsage():
-	print "python create_training.py <func name>"
+	print("python create_training.py <func name>")
 	exit(1)
 
 
@@ -52,12 +52,12 @@ def main():
 	trainPercent = sampling_rate * test_data_fraction
 	lines     = open("train.data/output/fann.data/aggregated.fann").readlines()
 	totalSize = int(lines[0].rstrip().split(" ")[0])
-	print >> sys.stderr, "---------------------------------------------------------",
-	print >> sys.stderr, bcolors.UNDERLINE + "\n# Training Size: %d" % (totalSize * sampling_rate * (1 - test_data_fraction)) + bcolors.ENDC
-	print >> sys.stderr, "---------------------------------------------------------"
+	print("---------------------------------------------------------", end=' ', file=sys.stderr)
+	print(bcolors.UNDERLINE + "\n# Training Size: %d" % (totalSize * sampling_rate * (1 - test_data_fraction)) + bcolors.ENDC, file=sys.stderr)
+	print("---------------------------------------------------------", file=sys.stderr)
 
 	bashCommand = "bash ../../scripts/run_training.sh %s %s %s 2 %s %s %s %s %s %s" % (fName, numIn, numOut, max_neurons, max_layer, sampling_rate,test_data_fraction, learning_rate, epochs)
-	print bashCommand
+	print(bashCommand)
 	process = subprocess.Popen(bashCommand.split())
 	process.communicate()
 pass;

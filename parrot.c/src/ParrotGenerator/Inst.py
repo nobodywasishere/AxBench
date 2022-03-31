@@ -5,8 +5,8 @@ Created on Jul 30, 2012
 '''
 
 import json
-from Var import Var
-from Code import Code
+from .Var import Var
+from .Code import Code
 
 class Inst(object):
     def __init__(self, opr='', type='s', fn = ''):
@@ -153,7 +153,7 @@ class Inst(object):
     pass
 
     def cppAvx(self, dataType, tabs = 1):
-        print self
+        print(self)
         #raw_input()
         s = '\t'*tabs
 
@@ -216,17 +216,17 @@ class Inst(object):
         for i, oprList in enumerate([self.dst, self.src1, self.src2]):
 
             oprClass = oprList[0].var
-            print oprClass
+            print(oprClass)
 
             oprNames = [o.name('', True) for o in oprList]
             oprId = '_' + '_'.join(oprNames)
-            print oprId, oprNames
+            print(oprId, oprNames)
 
             oprValues = [o.value for o in oprList]
-            print oprValues
+            print(oprValues)
 
             oprIndices = [o.desc[-1] for o in oprList]
-            print oprIndices
+            print(oprIndices)
 
             if (not oprClass == ''):
                 try:
@@ -366,8 +366,8 @@ if __name__ == '__main__':
     i.src1 = Var('w', (0, 2))
     i.src2 = Var('m', (0, 2))
 
-    print i
-    print i.dst.name(), i.src1.name(), i.src2.name()
+    print(i)
+    print(i.dst.name(), i.src1.name(), i.src2.name())
 
     exit(0)
 pass

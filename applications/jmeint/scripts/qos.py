@@ -15,7 +15,7 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 def printUsage():
-	print "Usage: python qos.py <original file> <nn file>"
+	print("Usage: python qos.py <original file> <nn file>")
 	exit(1)
 pass;
 
@@ -45,4 +45,4 @@ for i in range(len(origLines)):
 
 pass;
 
-print bcolors.FAIL	+ "*** Error: %1.8f" % (missPred/float(len(origLines))) + bcolors.ENDC
+print(bcolors.FAIL	+ "*** Error: %1.8f" % (missPred/float(len(origLines))) + bcolors.ENDC)

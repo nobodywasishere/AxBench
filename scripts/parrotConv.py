@@ -19,7 +19,7 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 def printUsage():
-    print "python parrotConv.py <bench name>"
+    print("python parrotConv.py <bench name>")
     exit(1)
 
 def findFileName(filename):

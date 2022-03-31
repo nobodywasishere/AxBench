@@ -4,7 +4,7 @@ Created on Mar 3, 2012
 @author: hadianeh
 '''
 
-from Neuron import Neuron
+from .Neuron import Neuron
 import json
 
 class NeuralNet(object):
@@ -77,7 +77,7 @@ class NeuralNet(object):
     def load(self, path):
         try: f = open(path)
         except: 
-            print 'Error: Oops! Cannot open ' + path +'!'
+            print('Error: Oops! Cannot open ' + path +'!')
             return False
         pass
     
@@ -88,7 +88,7 @@ class NeuralNet(object):
     def save(self, path):
         try: f = open(path, 'w')
         except: 
-            print 'Error: Oops! Cannot open ' + path +'!'
+            print('Error: Oops! Cannot open ' + path +'!')
             return False
         pass
     
@@ -167,15 +167,15 @@ class NeuralNet(object):
 
     def dump(self):
         for i, n in enumerate(self.hiddenLayer):
-            print i, 'h'*64
-            print n.w
+            print(i, 'h'*64)
+            print(n.w)
         pass
 
         for i, n in enumerate(self.outputLayer):
-            print i, 'o'*64
-            print n.w
+            print(i, 'o'*64)
+            print(n.w)
         pass
-        print 'o'*64
+        print('o'*64)
     pass
 
 pass
@@ -212,14 +212,14 @@ if __name__ == '__main__':
     
 #        nn.train((x, y, d), eta, epsilon, nEpoch)
         
-        print '-'*64
-        print nn
-        print '-'*64
+        print('-'*64)
+        print(nn)
+        print('-'*64)
         
         for i in range(len(x)):
             o = nn.compute(x[i])
-            print 'x[i]:', x[i]
-            print 'y[i]:', y[i], 'o:', o
+            print('x[i]:', x[i])
+            print('y[i]:', y[i], 'o:', o)
         pass
     
 #        print 'rmse', nn.test((x, y))
@@ -257,23 +257,23 @@ if __name__ == '__main__':
         
         for i in range(len(x)):
             o = nn.compute(x[i])
-            print x[i]
-            print y[i], o
+            print(x[i])
+            print(y[i], o)
 
-        print '&'*64
+        print('&'*64)
         s = nn
-        print s
+        print(s)
         
-        print '&'*64
+        print('&'*64)
         nn.fromStr(s)
-        print nn
+        print(nn)
         
         nn.dump()
             
         for i in range(len(x)):
             o = nn.compute(x[i])
-            print x[i]
-            print y[i], o
+            print(x[i])
+            print(y[i], o)
     pass
 
     

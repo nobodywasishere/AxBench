@@ -4,8 +4,8 @@ Created on Jul 20, 2012
 @author: hadianeh
 '''
 
-from Code import Code
-from Config import Config
+from .Code import Code
+from .Config import Config
 import os
 
 class ParrotC(object):
@@ -23,7 +23,7 @@ class ParrotC(object):
     pass
 
     def actionObserve(self, extCmd, outFileName):
-        print 'Parrot Observer'
+        print('Parrot Observer')
         
         cfg = self.cfg.get("Parrot Observer")
         src = self.code.insertProbes(cfg)
@@ -62,12 +62,12 @@ class ParrotC(object):
                 cmd = 'rm -f ' + temp
                 if (self.args.track):
                     cmd = 'mv ' + temp + ' ' + temp + '.tmp'
-                print cmd
+                print(cmd)
                 os.system(cmd)
             pass
         except:
-            print('Error! Oops: Action not found! Please specify one of the following: ' 
-                  + ','.join(self.actions.iterkeys()))
+            print(('Error! Oops: Action not found! Please specify one of the following: ' 
+                  + ','.join(iter(self.actions.keys()))))
             return
         pass
     pass

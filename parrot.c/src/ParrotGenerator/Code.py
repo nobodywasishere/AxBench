@@ -4,7 +4,7 @@ Created on Jul 31, 2012
 @author: hadianeh
 '''
 
-from Var import Var
+from .Var import Var
 
 class Code(object):
     def __init__(self):
@@ -34,7 +34,7 @@ class Code(object):
     def toCpp(self, path, nn, targetConfig, vectorMode):
         try: f = open(path, 'w')
         except:
-            print 'Error: Oops! Cannot open ' + path + '!'
+            print('Error: Oops! Cannot open ' + path + '!')
             return False
         pass
 
@@ -54,7 +54,7 @@ class Code(object):
 
         if (vectorMode):
             vectorDataType = targetConfig.get('vectorDataType')
-            vVars = list(self.vVars.iterkeys())
+            vVars = list(self.vVars.keys())
             vVars.sort()
             for v in vVars:
                 s += 'static ' + vectorDataType + ' ' + v
@@ -79,7 +79,7 @@ class Code(object):
             s += 'static ' + dataType + ' ' + 'y_tmp' + '[' + str(targetConfig.get('vectorWidth')) + '] __attribute__ ((aligned(32)));\n'
             s += '\n'
         else:
-            for v, n in Var.varTrack.iteritems():
+            for v, n in Var.varTrack.items():
                 s += 'static ' + dataType + ' ' + v + '[' + str(n) + '];\n'
             s += '\n'
         pass

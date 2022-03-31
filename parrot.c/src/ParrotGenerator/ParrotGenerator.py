@@ -6,11 +6,11 @@ Created on Jul 30, 2012
 
 import argparse
 
-from NeuralParrot.NeuralNet import NeuralNet
-from JsonCloak.JsonCloak import JsonCloak
-from Code import Code
-from Inst import Inst
-from Var import Var
+from .NeuralParrot.NeuralNet import NeuralNet
+from .JsonCloak.JsonCloak import JsonCloak
+from .Code import Code
+from .Inst import Inst
+from .Var import Var
 
 class ParrotGenerator(object):
     def __init__(self, input, output, target, targetConfig):
@@ -31,14 +31,14 @@ class ParrotGenerator(object):
     pass
 
     def cpuCodeGen(self):
-        print self.targetConfig.get('vectorizationMode')
+        print(self.targetConfig.get('vectorizationMode'))
 
         w = self.targetConfig.get('vectorWidth')
-        print 'vectorWidth', w
-        print '~'*64
+        print('vectorWidth', w)
+        print('~'*64)
 
         nNeurons = self.nn.nNeurons
-        print nNeurons
+        print(nNeurons)
         nMult = 0
         nAdd = 0
         nAct = 0
@@ -140,7 +140,7 @@ class ParrotGenerator(object):
         Var.varTrack['a'] = nAdd
         Var.varTrack['n'] = nAct
 
-        print(str(self.code))
+        print((str(self.code)))
     pass
 
 
@@ -150,7 +150,7 @@ class ParrotGenerator(object):
     pass
 
     def avxHorizontolCodeGen(self):
-        print self.targetConfig.get('vectorizationMode')
+        print(self.targetConfig.get('vectorizationMode'))
 
         insts = self.code.insts
 
@@ -194,7 +194,7 @@ class ParrotGenerator(object):
     pass
 
     def avxVerticalCodeGen(self):
-        print self.targetConfig.get('vectorizationMode')
+        print(self.targetConfig.get('vectorizationMode'))
     pass
 
     def npuCodeGen(self):

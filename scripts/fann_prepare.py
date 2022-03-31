@@ -15,8 +15,8 @@ class bcolors:
 
 
 def printUsage():
-		print "Usage: python fann_prepare.py <data_in> <sampling rate> <test data fraction>"
-		print "Example: python fann_prepare.py sobel_full.data 0.01 0.3"
+		print("Usage: python fann_prepare.py <data_in> <sampling rate> <test data fraction>")
+		print("Example: python fann_prepare.py sobel_full.data 0.01 0.3")
 		exit(1)
 pass;
 

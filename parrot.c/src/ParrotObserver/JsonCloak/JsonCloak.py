@@ -24,7 +24,7 @@ class JsonCloak(object):
         try: inFile = open(filePath)
         except:
             inFile = None
-            print('Error! Oops! Cannot open ' + str(filePath) + '!')
+            print(('Error! Oops! Cannot open ' + str(filePath) + '!'))
             return
         pass
     
@@ -36,7 +36,7 @@ class JsonCloak(object):
         try: outFile = open(filePath, 'w')
         except:
             outFile = None
-            print('Error! Oops! Cannot open ' + filePath + '!')
+            print(('Error! Oops! Cannot open ' + filePath + '!'))
             return
         pass
     

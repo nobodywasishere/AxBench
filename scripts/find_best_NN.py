@@ -22,7 +22,7 @@ class bcolors:
 
 
 def printUsage():
-	print "python find_best_NN.py <benchmark>"
+	print("python find_best_NN.py <benchmark>")
 	exit(1)
 
 def main():
@@ -58,10 +58,10 @@ def main():
 	# copy best NN to the folder and change its name
 	(best_epoch, best_topology, best_run, best_rerun) = best_NN
 
-	print "---------------------------------------------------------"
-	print bcolors.UNDERLINE + "# Best Topology: %s" %(best_topology) + bcolors.ENDC
-	print bcolors.UNDERLINE + "# Best MSE:      %1.10f" %(best_NMSE) + bcolors.ENDC
-	print "---------------------------------------------------------"
+	print("---------------------------------------------------------")
+	print(bcolors.UNDERLINE + "# Best Topology: %s" %(best_topology) + bcolors.ENDC)
+	print(bcolors.UNDERLINE + "# Best MSE:      %1.10f" %(best_NMSE) + bcolors.ENDC)
+	print("---------------------------------------------------------")
 
 
 	if(best_rerun == 0):

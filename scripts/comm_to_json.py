@@ -19,7 +19,7 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 def printUsage():
-	print "python comm_to_json.py <func name>"
+	print("python comm_to_json.py <func name>")
 	exit(1)
 
 def main():
@@ -32,20 +32,20 @@ def main():
 	#max n of neurons per layer
 	
 	args = []
-	print "------------------ Compiler Parameters ------------------"
-	args.append(raw_input(bcolors.OKBLUE + "Learning rate [0.1-1.0]: " + bcolors.ENDC))
-	args.append(raw_input(bcolors.OKBLUE + "Epoch number [1-10000]: "+ bcolors.ENDC))
-	args.append(raw_input(bcolors.OKBLUE + "Sampling rate [0.1-1.0]: "+ bcolors.ENDC))
-	args.append(raw_input(bcolors.OKBLUE + "Test data fraction [0.1-1.0]: "+ bcolors.ENDC))
+	print("------------------ Compiler Parameters ------------------")
+	args.append(input(bcolors.OKBLUE + "Learning rate [0.1-1.0]: " + bcolors.ENDC))
+	args.append(input(bcolors.OKBLUE + "Epoch number [1-10000]: "+ bcolors.ENDC))
+	args.append(input(bcolors.OKBLUE + "Sampling rate [0.1-1.0]: "+ bcolors.ENDC))
+	args.append(input(bcolors.OKBLUE + "Test data fraction [0.1-1.0]: "+ bcolors.ENDC))
 
-	hidden_layers = raw_input(bcolors.OKBLUE + "Maximum number of layers [3|4]: "+ bcolors.ENDC)
+	hidden_layers = input(bcolors.OKBLUE + "Maximum number of layers [3|4]: "+ bcolors.ENDC)
 	while((int(hidden_layers) != 3 ) and (int(hidden_layers) != 4)):
-		print(bcolors.FAIL + "Number of hidden layers can only be 3 or 4!" + bcolors.ENDC)
-		hidden_layers = raw_input(bcolors.OKBLUE + "Maximum number of layers [3|4]: "+ bcolors.ENDC)
+		print((bcolors.FAIL + "Number of hidden layers can only be 3 or 4!" + bcolors.ENDC))
+		hidden_layers = input(bcolors.OKBLUE + "Maximum number of layers [3|4]: "+ bcolors.ENDC)
 
 	args.append(hidden_layers)
-	args.append(raw_input(bcolors.OKBLUE + "Maximum number of neurons per layer [2-64]: "+ bcolors.ENDC))
-	print "---------------------------------------------------------"
+	args.append(input(bcolors.OKBLUE + "Maximum number of neurons per layer [2-64]: "+ bcolors.ENDC))
+	print("---------------------------------------------------------")
 	
 	data_file = open(sys.argv[1] +'.json', 'w')
 	#quotation marks around ints? decide after running everything
