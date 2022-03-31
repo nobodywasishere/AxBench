@@ -4,8 +4,8 @@ Created on Jul 20, 2012
 @author: hadianeh
 '''
 
-from .Code import Code
-from .Config import Config
+from Code import Code
+from Config import Config
 import os
 
 class ParrotC(object):

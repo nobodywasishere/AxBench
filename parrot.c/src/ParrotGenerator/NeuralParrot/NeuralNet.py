@@ -4,7 +4,7 @@ Created on Mar 3, 2012
 @author: hadianeh
 '''
 
-from .Neuron import Neuron
+from Neuron import Neuron
 import json
 
 class NeuralNet(object):

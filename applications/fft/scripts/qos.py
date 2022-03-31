@@ -43,24 +43,24 @@ for i in range(len(origLines)):
 	origImag 	= float(origLine.split(" ")[1])
 
 	nnReal 		= float(nnLine.split(" ")[0])
- 	nnImag 		= float(nnLine.split(" ")[1])
+	nnImag = float(nnLine.split(" ")[1])
 
- 	diffReal	= origReal - nnReal
- 	diffImag	= origImag - nnImag
+	diffReal = origReal - nnReal
+	diffImag = origImag - nnImag
 
- 	nominator   = math.sqrt(diffReal*diffReal + diffImag*diffImag)
- 	denominator = math.sqrt(origReal*origReal + origImag*origImag)
+	nominator = math.sqrt(diffReal*diffReal + diffImag*diffImag)
+	denominator = math.sqrt(origReal*origReal + origImag*origImag)
 
- 	if(denominator == 0):
+	if(denominator == 0):
  		e = 1.0
- 	elif(math.isnan(nominator) or (math.isnan(denominator))):
- 		e = 1.0
- 	elif ((nominator / denominator > 1)):
- 		e = 1.0
- 	else:
- 		e = nominator / denominator
+	elif(math.isnan(nominator) or (math.isnan(denominator))):
+		e = 1.0
+	elif ((nominator / denominator > 1)):
+		e = 1.0
+	else:
+		e = nominator / denominator
 
- 	absError += e
+	absError += e
 pass;
 
 print(bcolors.FAIL	+ "*** Error: %1.8f" % (absError/float(len(origLines))) + bcolors.ENDC)

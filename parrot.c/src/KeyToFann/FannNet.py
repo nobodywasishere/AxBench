@@ -4,8 +4,8 @@ Created on Jul 26, 2012
 @author: hadianeh
 '''
 
-from .JsonCloak.JsonCloak import JsonCloak
-from .NeuralParrot.NeuralNet import NeuralNet
+from JsonCloak.JsonCloak import JsonCloak
+from NeuralParrot.NeuralNet import NeuralNet
 import re
 
 class FannNet(object):

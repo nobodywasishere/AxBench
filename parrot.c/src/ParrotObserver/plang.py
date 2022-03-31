@@ -8,7 +8,7 @@ Created on Jul 24, 2012
 
 import argparse
 
-from .ParrotC import ParrotC
+from ParrotC import ParrotC
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(

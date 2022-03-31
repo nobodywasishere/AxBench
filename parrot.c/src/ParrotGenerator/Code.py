@@ -4,7 +4,7 @@ Created on Jul 31, 2012
 @author: hadianeh
 '''
 
-from .Var import Var
+from Var import Var
 
 class Code(object):
     def __init__(self):

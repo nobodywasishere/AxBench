@@ -5,7 +5,7 @@ Created on Mar 4, 2012
 '''
 
 from random import random
-from .Activation import f
+from Activation import f
 import json
 
 class Neuron(object):

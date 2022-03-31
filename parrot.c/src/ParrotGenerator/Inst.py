@@ -5,8 +5,8 @@ Created on Jul 30, 2012
 '''
 
 import json
-from .Var import Var
-from .Code import Code
+from Var import Var
+from Code import Code
 
 class Inst(object):
     def __init__(self, opr='', type='s', fn = ''):

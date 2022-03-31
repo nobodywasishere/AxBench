@@ -4,7 +4,7 @@ Created on Jul 23, 2012
 @author: hadianeh
 '''
 
-from .JsonCloak.JsonCloak import JsonCloak
+from JsonCloak.JsonCloak import JsonCloak
 
 class Config(JsonCloak):
     def __init__(self):

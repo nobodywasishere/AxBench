@@ -6,11 +6,11 @@ Created on Jul 30, 2012
 
 import argparse
 
-from .NeuralParrot.NeuralNet import NeuralNet
-from .JsonCloak.JsonCloak import JsonCloak
-from .Code import Code
-from .Inst import Inst
-from .Var import Var
+from NeuralParrot.NeuralNet import NeuralNet
+from JsonCloak.JsonCloak import JsonCloak
+from Code import Code
+from Inst import Inst
+from Var import Var
 
 class ParrotGenerator(object):
     def __init__(self, input, output, target, targetConfig):
