@@ -1,9 +1,0 @@
-src.nn/complex_nn.cpp src.nn/fft_nn.cpp src.nn/fourier_nn.cpp
-obj/complex_nn.o obj/fft_nn.o obj/fourier_nn.o
-if [ ! -d "./bin" ];then 	\
-	mkdir bin;				\
-fi
-if [ ! -d "./obj" ];then 	\
-	mkdir obj;				\
-fi
-g++ obj/complex_nn.o obj/fft_nn.o obj/fourier_nn.o -L -L/usr/local/lib -L/home/michael/Documents/2021/Tufts_Fall/EE193/Final/axbench/parrot.c/src/ParrotLib -lfann -lboost_regex -lParrot -o bin/fft.nn.out
