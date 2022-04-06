@@ -1,3 +1,5 @@
+# AxBench
+
 **AxBench** is a benchmark suite combined with the necessary annotations and
 compilation workflow for approximate computing. We develop **AxBench** in C++,
 aiming to provide a set of representative applications from various domains to
@@ -5,8 +7,7 @@ explore different aspect of the approximate computing. **AxBench** is developed
 in Alternative Computing Technologies (ACT) Laboratory, Georgia Institute of
 Technology.
 
-
-*** === Papers === ***
+## Papers
 
 We actively work on **AxBench** to add more applications from different domains
 (e.g. Computer Vision, Data Analytics, Multimedia, Web Search, Finance, etc.).
@@ -18,18 +19,18 @@ MICRO'12 describing the suite:
   1. H. Esmaeilzadeh, A. Sampson, L. Ceze, D. Burger,
     "Neural acceleration for general-purpose approximate programs", MICRO 2012.
 
-*** === Dependencies === ***
+## Dependencies
 
 **AxBench** was developed on Ubuntu Linux (this release was tested with Ubuntu
 version 12.04). In principal, **AxBench** should work with any Linux
 distribution as long as the following software dependencies are satisfied.
 
 1. Boost Libraries [version 1.49 or higher]
-2. Python [version 2.7 or higher]
+2. Python [version 3.6 or higher] and dependencies listed in `requirements.txt`
 3. G++ [4.6 or higher]
 4. Fast Artificial Neural Network Library (FANN) [version 2.2.0 or higher]
 
-*** === Applications === ***
+## Applications
 
 1. **Black-Scholes [Financial Analysis]**: This application calculates the price
 of European options. We adapted this benchmark from **Parsec** benchmark suite
@@ -52,70 +53,66 @@ on a set of random (r, g, b) values.
 7. **Sobel [Image Processing]**: Sobel filter detects the edges of a color
 image.
 
-*** === Build and Run AxBench ===***
+## Build and Run AxBench
 
-1) After downloading the **AxBench**, please go to the **parrot.c/src**
-directory and run (1) **bash cleanlib.sh**, and (2) **bash buildlib.sh**. It will create a static library which
+1. After downloading **AxBench**, please go to the **parrot.c/src**
+directory and run (1) `./cleanlib.sh`, and (2) `./buildlib.sh`. It will create a static library which
 will be later used to execute the Parrot transformation on the applications. 
 
-2) Then, modify **config.mk** in the **applications** folder with the location
-of the **Parrot** and **FANN library**.
+2. Run `./make_all.sh` inside the `fann.template` directory.
 
-3) You aslo need to run **bash make_all.sh** inside the **fann.template** directory.
+3. Install the required Python dependencies using `pip install -r requirements.txt`
 
-4) You are set to use **AxBench**. You can simply execute the **run.sh** script
-to make or run each of the applications.
-
-*** === Compilation Parameters ===***
+## Compilation Parameters
 
 There are some parameters that need to be specified by the user during the
 compilation. Here you can see a brief explanation about each of these parameters.
 
-1) ** Learning rate: ** Rate of learning for RPROP algorithm.
+1. `Learning rate: ` Rate of learning for RPROP algorithm.
 
-2) ** Epoch number: ** Number of epochs for training.
+2. `Epoch number: ` Number of epochs for training.
 
-3) ** Sampling Rate: ** The percentage of data which is used for training and
+3. `Sampling Rate: ` The percentage of data which is used for training and
 testing.
 
-4) ** Test data fraction: ** The percentage of sampled data which is used for
+4. `Test data fraction: ` The percentage of sampled data which is used for
 testing the obtained neural network.
 
-5) ** Maximum number of layers: ** The maximum number of layers in the neural
+5. `Maximum number of layers: ` The maximum number of layers in the neural
 network.
 
-6) ** Maximum number of neurons per layer: ** The maximum number of neurons per
+6. `Maximum number of neurons per layer: ` The maximum number of neurons per
 each hidden layer.
 
-*** === Parrot Annotations ===***
+## Parrot Annotations
 
 All the applications come with the necessary annotations for neural network
 transformation. We use **pragma** keyword to mark the region of the code which
 needs to be transformed to neural network representation.
 
-*** === Adding new benchmarks ===***
+## Adding new benchmarks
 
 You can easily add new benchmarks to **AxBench**. These are the necessary steps
 that need to be followed.
 
-1) Run ** bash run.sh setup <application name>**.
+1. Run `./run.py setup <application name>`.
 
-2) Put the source files into the **src** directory and annotate the region of
-interest with the **Parrot** semantics.
+2. Put the source files into the `src` directory and annotate the region of
+interest with the `Parrot` semantics.
 
-3) Put the train and test datasets into their corresponding folders (train.data
-and test.data).
+3. Put the train and test datasets into their corresponding folders (`train.data`
+and `test.data`).
 
-4) Create ** Makefile **, **Makefile_nn**, **run_observation.sh**, and
-**run_NN.sh**. You may get help on how to create these files from other
+4. Create `Makefile`, `Makefile_nn`, `run_observation.sh`, and
+`run_NN.sh`. You may get help on how to create these files from other
 application directories.
 
-5) Run ** bash run.sh make <application name>** to build the application.
+5. Run `./run.py make <application name>` to build the application.
 
-6) Run ** bash run.sh run <application name>** to apply Parrot transformation
+6. Run `./run.py run <application name>` to apply Parrot transformation
 and replace the region of interest with a neural network.
 
-*** === Software License === ***
+## Software License
 
 The license is a free non-exclusive, non-transferable license to reproduce, use,
 modify and display the source code version of the Software, with or without
@@ -125,11 +122,12 @@ assistance, enhancements or updates to the Software. All rights, title to and
 ownership interest in Software, including all intellectual property rights
 therein shall remain in Georgia Institute of Technology.
 
-*** === Questions === ***
+## Questions
 
 Please forward your questions to: *info@axbench.org*
 
-*** === Maintained by === ***
+## Maintained by
 
-    Amir Yazdanbakhsh ( http://www.cc.gatech.edu/~ayazdanb/ )
+    Margret Riegert (https://github.com/nobodywasishere)
+    Amir Yazdanbakhsh (http://www.cc.gatech.edu/~ayazdanb/)
     Bradley Thwaites (http://users.ece.gatech.edu/~bthwaites3/)
