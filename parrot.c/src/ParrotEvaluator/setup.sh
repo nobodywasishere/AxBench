@@ -12,4 +12,3 @@ ln -s ../../../../ParrotGenerator/parrot/$2.$1.parrot.cpp Bench/$1/$2/
 ls -lha -R Bench/$1/$2
 
 #cat Bench/$1/$2/*.*
-

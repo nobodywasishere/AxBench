@@ -1,43 +1,42 @@
-'''
+"""
 Created on Jul 22, 2012
 
 @author: hadianeh
-'''
+"""
 
 import re
 import os
 
+
 class Code(object):
-    PRAGMA_PARROT_KEYWORD = 'parrot'
-    PRAGMA_PARROT_INPUT_KEYWORD = 'input'
-    PRAGMA_PARROT_OUTPUT_KEYWORD = 'output'
+    PRAGMA_PARROT_KEYWORD = "parrot"
+    PRAGMA_PARROT_INPUT_KEYWORD = "input"
+    PRAGMA_PARROT_OUTPUT_KEYWORD = "output"
 
     def __init__(self):
-        self.src = ''
+        self.src = ""
         self.regions = []
-        self.name = ''
-        self.type = ''
+        self.name = ""
+        self.type = ""
         self.tempFiles = []
 
-
     # #pragma parrot(input/output, "ParrotName",
-    # ([expression])?(<expression, expression>)? expression 
+    # ([expression])?(<expression, expression>)? expression
     # (, ([expression])?(<expression, expression>)? expression)* )
     def parseParrotPragma(self, line, keyword):
         parrotName = None
         parrotArgs = None
-        
+
         m = re.match(
-            '#pragma\s+' +
-            self.PRAGMA_PARROT_KEYWORD +
-            '\s*\(\s*' +
-            keyword +
-            '\s*,\s*' +
-            '"(.+)"' +
-            '\s*,\s*' +
-            '(.+)\)',
-            
-            line
+            "#pragma\s+"
+            + self.PRAGMA_PARROT_KEYWORD
+            + "\s*\(\s*"
+            + keyword
+            + "\s*,\s*"
+            + '"(.+)"'
+            + "\s*,\s*"
+            + "(.+)\)",
+            line,
         )
         try:
             parrotName = m.group(1)
@@ -48,98 +47,91 @@ class Code(object):
         except:
             return [False, parrotName, parrotArgs]
 
-
-
     def parseParrotArgs(self, args):
-        args = re.sub(',\s+', ',', args)
-        args = re.sub('\s+$', '', args)
-        args = args.split(',')
+        args = re.sub(",\s+", ",", args)
+        args = re.sub("\s+$", "", args)
+        args = args.split(",")
 
         parrotArgs = []
         for a in args:
-            print('-'*32)
+            print("-" * 32)
             print(a)
-            m = re.match('^\s*(\[(.+)\])?\s*(<(.+);(.+)>)?\s*(.+)$', a)
+            m = re.match("^\s*(\[(.+)\])?\s*(<(.+);(.+)>)?\s*(.+)$", a)
 
             features = [m.group(6), m.group(2), m.group(4), m.group(5)]
             print(features)
             for i in range(len(features)):
-                if ((features[i] == None) and (i != 1)):
-                    features[i] = '0'
+                if (features[i] == None) and (i != 1):
+                    features[i] = "0"
 
-            
-                if (features[i] == None):
+                if features[i] == None:
                     continue
-            
-                features[i] = re.sub('^\s+', '', features[i])
-                features[i] = re.sub('\s+$', '', features[i])
 
+                features[i] = re.sub("^\s+", "", features[i])
+                features[i] = re.sub("\s+$", "", features[i])
 
             parrotArgs.append((features[0], features[1], (features[2], features[3])))
             print(parrotArgs[-1])
 
-    
         return parrotArgs
-
 
     def buildLine(self, src, i):
         line = src[i]
-        m = re.match(
-            '#pragma\s+' +
-            self.PRAGMA_PARROT_KEYWORD +
-            '.+(\\\\)\s*$',
-            line
-        )
+        m = re.match("#pragma\s+" + self.PRAGMA_PARROT_KEYWORD + ".+(\\\\)\s*$", line)
 
         j = i + 1
-        while(m != None):
-            if (j < len(src)):
-                line = line[:m.start(1)] + src[j] + line[m.end(1):]
+        while m != None:
+            if j < len(src):
+                line = line[: m.start(1)] + src[j] + line[m.end(1) :]
 
-        
-            m = re.match(
-                '.*(\\\\)\s*$',
-                line
-            )
-            
+            m = re.match(".*(\\\\)\s*$", line)
+
             j += 1
 
-    
         return line, j - 1
 
-
     def cppParser(self, srcFileName, extCmd, outFileName):
-        #self.tempFiles.append(outFileName + '.' + self.type)
-        #os.system(extCmd + ' -E ' + srcFileName + ' > ' + self.tempFiles[-1])
-        
+        # self.tempFiles.append(outFileName + '.' + self.type)
+        # os.system(extCmd + ' -E ' + srcFileName + ' > ' + self.tempFiles[-1])
+
         srcFile = open(self.tempFiles[-1])
-        
+
         src = srcFile.readlines()
         self.src = src
-        
+
         foundParrotInput = False
         self.regions = []
         inputLoc = 0
         inputParrotInfo = ()
-        
+
         for i in range(len(src)):
             line, j = self.buildLine(src, i)
-            
-            if (not foundParrotInput):
-                inputParrotInfo = self.parseParrotPragma(line, self.PRAGMA_PARROT_INPUT_KEYWORD)
-                if (inputParrotInfo[0]):
+
+            if not foundParrotInput:
+                inputParrotInfo = self.parseParrotPragma(
+                    line, self.PRAGMA_PARROT_INPUT_KEYWORD
+                )
+                if inputParrotInfo[0]:
                     foundParrotInput = True
-                    inputLoc = (i, j) 
+                    inputLoc = (i, j)
 
             else:
-                outputParrotInfo = self.parseParrotPragma(line, self.PRAGMA_PARROT_OUTPUT_KEYWORD)
-                if (outputParrotInfo[0]):
-                    if (inputParrotInfo[1] != outputParrotInfo[1]):
-                        errMsg = 'Error: Oops! The Parrot names do not match on line '
-                        errMsg += str(inputLoc + 1) + ' "' + inputParrotInfo[1] + '"' 
-                        errMsg += ' and line ' + str(i + 1) + ' "' + outputParrotInfo[1] + '"!' 
-                        
-                        print(errMsg)    
+                outputParrotInfo = self.parseParrotPragma(
+                    line, self.PRAGMA_PARROT_OUTPUT_KEYWORD
+                )
+                if outputParrotInfo[0]:
+                    if inputParrotInfo[1] != outputParrotInfo[1]:
+                        errMsg = "Error: Oops! The Parrot names do not match on line "
+                        errMsg += str(inputLoc + 1) + ' "' + inputParrotInfo[1] + '"'
+                        errMsg += (
+                            " and line "
+                            + str(i + 1)
+                            + ' "'
+                            + outputParrotInfo[1]
+                            + '"!'
+                        )
+
+                        print(errMsg)
                         return False
 
                     inputParrotInfo[0] = inputLoc
@@ -147,92 +139,67 @@ class Code(object):
                     foundParrotInput = False
                     self.regions.append((inputParrotInfo, outputParrotInfo))
 
-
-
-    
         return True
-
 
     def cppProbes(self, cfg):
         src = self.src
-        
+
         for j, region in enumerate(self.regions):
             for i in range(2):
                 loc = region[i][0]
                 tag = region[i][1]
                 varList = region[i][2]
-             
-                probeStr = ''
+
+                probeStr = ""
                 for var in varList:
                     probeStr += 'parroto.write("' + tag + '", '
-                    probeStr += str(i) + ', '
+                    probeStr += str(i) + ", "
                     probeStr += var[0]
-                    if (var[1] != None): probeStr += ', ' + var[1]
-                    probeStr += ', ' + var[2][0] + ', ' + var[2][1] 
-                    probeStr += ');\n'
+                    if var[1] != None:
+                        probeStr += ", " + var[1]
+                    probeStr += ", " + var[2][0] + ", " + var[2][1]
+                    probeStr += ");\n"
 
-            
                 src.insert(loc[i ^ 1] + 1 + j * 2, probeStr)
 
-
-    
-        probeStr = '#include "' + cfg['parrotoLib'] + '"\n'
-        probeStr += 'extern ' + cfg['parrotoClass'] + ' ' + cfg['parrotoObj'] + ';\n\n'
+        probeStr = '#include "' + cfg["parrotoLib"] + '"\n'
+        probeStr += "extern " + cfg["parrotoClass"] + " " + cfg["parrotoObj"] + ";\n\n"
         src.insert(0, probeStr)
-    
+
         return src
 
-                    
     def cppCompiler(self, extCmd, outFileName):
-        cmd = extCmd + ' ' + self.tempFiles[-1] + ' -o ' + outFileName
+        cmd = extCmd + " " + self.tempFiles[-1] + " -o " + outFileName
         print(cmd)
         os.system(cmd)
- 
 
-    parsers = {
-        'c':   cppParser,
-        'cpp': cppParser,
-        'C':   cppParser
-    }
-    
-    probes = {
-        'c':   cppProbes,
-        'cpp': cppProbes,
-        'C':   cppProbes
-    }
+    parsers = {"c": cppParser, "cpp": cppParser, "C": cppParser}
 
-    compilers = {
-        'c':   cppCompiler,
-        'cpp': cppCompiler,
-        'C':   cppCompiler
-    }
-    
+    probes = {"c": cppProbes, "cpp": cppProbes, "C": cppProbes}
+
+    compilers = {"c": cppCompiler, "cpp": cppCompiler, "C": cppCompiler}
+
     def parse(self, srcFileName, extCmd, outFileName):
         self.__init__()
-        
-        m = re.match('(.+)\.(.+)$', srcFileName)
-        
+
+        m = re.match("(.+)\.(.+)$", srcFileName)
+
         self.name = m.group(1)
         self.type = m.group(2)
-        
-        self.tempFiles.append(srcFileName)
-        
-        self.parsers[self.type](self, srcFileName, extCmd, outFileName)
 
+        self.tempFiles.append(srcFileName)
+
+        self.parsers[self.type](self, srcFileName, extCmd, outFileName)
 
     def insertProbes(self, cfg):
         return self.probes[self.type](self, cfg)
 
-
     def compile(self, extCmd, outFileName):
         return self.compilers[self.type](self, extCmd, outFileName)
- 
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     codeRegions = Code()
-    codeRegions.find('kooft.hot.cpp')
-    
-    exit(0)
+    codeRegions.find("kooft.hot.cpp")
 
+    exit(0)

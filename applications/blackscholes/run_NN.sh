@@ -6,8 +6,7 @@ benchmark=blackscholes
 
 mkdir -p test.data/output
 
-for f in test.data/input/*.data
-do
+for f in test.data/input/*.data; do
 	filename=$(basename "$f")
 	extension="${filename##*.}"
 	filename="${filename%.*}"

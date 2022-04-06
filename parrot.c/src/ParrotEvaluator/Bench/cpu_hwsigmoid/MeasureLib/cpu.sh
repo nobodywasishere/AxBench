@@ -3,4 +3,3 @@ lscpu
 
 # Display CPU utilization
 mpstat -P ALL
-

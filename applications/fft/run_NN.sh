@@ -11,7 +11,7 @@ nc='\033[0m' # No Color
 
 mkdir -p test.data/output
 
-./bin/${benchmark}.nn.out 	32768 test.data/output/${benchmark}_nn.data
-./bin/${benchmark}.out 		32768 test.data/output/${benchmark}_orig.data
+./bin/${benchmark}.nn.out 32768 test.data/output/${benchmark}_nn.data
+./bin/${benchmark}.out 32768 test.data/output/${benchmark}_orig.data
 
-python ./scripts/qos.py test.data/output/${benchmark}_orig.data test.data/output/${benchmark}_nn.data 
+python ./scripts/qos.py test.data/output/${benchmark}_orig.data test.data/output/${benchmark}_nn.data

@@ -11,21 +11,19 @@ nc='\033[0m' # No Color
 
 mkdir -p test.data/output
 
-for f in test.data/input/*.gz
-do
-    $(cd $(dirname "$f") && gunzip -k $(basename "$f"))
+for f in test.data/input/*.gz; do
+	$(cd $(dirname "$f") && gunzip -k $(basename "$f"))
 done
 
-for f in test.data/input/*.data
-do
+for f in test.data/input/*.data; do
 	filename=$(basename "$f")
 	extension="${filename##*.}"
 	filename="${filename%.*}"
 
-	./bin/${benchmark}.nn.out 	${f} test.data/output/${filename}_${benchmark}_nn.data
-	./bin/${benchmark}.out 		${f} test.data/output/${filename}_${benchmark}_orig.data
+	./bin/${benchmark}.nn.out ${f} test.data/output/${filename}_${benchmark}_nn.data
+	./bin/${benchmark}.out ${f} test.data/output/${filename}_${benchmark}_orig.data
 
 	echo -ne " ${red}- ${f}${nc} "
 
-	python ./scripts/qos.py test.data/output/${filename}_${benchmark}_orig.data test.data/output/${filename}_${benchmark}_nn.data 
+	python ./scripts/qos.py test.data/output/${filename}_${benchmark}_orig.data test.data/output/${filename}_${benchmark}_nn.data
 done
