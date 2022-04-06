@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 USAGE="usage: run.sh [setup] [application name] | [make|clean|run] [blackscholes|fft|inversek2j|jmeint|jpeg|kmeans|sobel|all]"
 

@@ -1,7 +1,10 @@
 *.o
 *.d
 *.a
-**/bin
+**/*/bin
 __pycache__
 *.tmp
 *.log
+**/*/output
+*.json
+hadianeh.parroto.data

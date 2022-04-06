@@ -1,4 +1,5 @@
-BASE_DIR    := /home/bradley/Projects/axbench
+DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
+BASE_DIR    := $(DIR)/..
 FANN_INC	:= /usr/local/include
 FANN_LIB	:= /usr/local/lib
 PARROT_LIB  := $(BASE_DIR)/parrot.c/src/ParrotLib
