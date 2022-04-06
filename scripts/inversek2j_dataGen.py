@@ -16,6 +16,6 @@ for i in range(int(sys.argv[1])):
 	theta1 = random.uniform(0.0, 1.0) * PI / 2.0
 	theta2 = random.uniform(0.0, 1.0) * PI / 2.0
 	outFile.write("%f\t%f\n" % (theta1, theta2))
-pass;
+
 
 outFile.close()

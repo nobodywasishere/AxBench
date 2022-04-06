@@ -17,6 +17,6 @@ for i in range(int(sys.argv[1])):
 		currValue = random.uniform(0.0, 1.0)
 		outFile.write("%f\t" % (currValue))
 	outFile.write("\n");
-pass;
+
 
 outFile.close()

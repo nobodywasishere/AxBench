@@ -60,7 +60,7 @@ def main():
 	print(bashCommand)
 	process = subprocess.Popen(bashCommand.split())
 	process.communicate()
-pass;
+
 
 if __name__ == "__main__":
     main()

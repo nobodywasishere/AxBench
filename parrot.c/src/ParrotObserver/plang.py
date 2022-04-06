@@ -26,16 +26,16 @@ if __name__ == '__main__':
     if (args.action == None):
         print('Error! Oops: Please specify the action!')
         exit(-1)
-    pass
+
 
     if (args.extcmd == None):
         print('Error! Oops: Please specify the external compilation command!')
         exit(-1)
-    pass
+
 
     parrotC = ParrotC(args)
     parrotC.act(args.source, args.action.lower(), args.extcmd, args.output)
 
     exit(0)
-pass
+
     

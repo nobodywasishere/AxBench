@@ -18,7 +18,7 @@ class Code(object):
         self.name = ''
         self.type = ''
         self.tempFiles = []
-    pass
+
 
     # #pragma parrot(input/output, "ParrotName",
     # ([expression])?(<expression, expression>)? expression 
@@ -47,8 +47,8 @@ class Code(object):
             return [True, parrotName, parrotArgs]
         except:
             return [False, parrotName, parrotArgs]
-        pass
-    pass
+
+
 
     def parseParrotArgs(self, args):
         args = re.sub(',\s+', ',', args)
@@ -66,21 +66,21 @@ class Code(object):
             for i in range(len(features)):
                 if ((features[i] == None) and (i != 1)):
                     features[i] = '0'
-                pass
+
             
                 if (features[i] == None):
                     continue
             
                 features[i] = re.sub('^\s+', '', features[i])
                 features[i] = re.sub('\s+$', '', features[i])
-            pass
+
 
             parrotArgs.append((features[0], features[1], (features[2], features[3])))
             print(parrotArgs[-1])
-        pass
+
     
         return parrotArgs
-    pass
+
 
     def buildLine(self, src, i):
         line = src[i]
@@ -95,7 +95,7 @@ class Code(object):
         while(m != None):
             if (j < len(src)):
                 line = line[:m.start(1)] + src[j] + line[m.end(1):]
-            pass
+
         
             m = re.match(
                 '.*(\\\\)\s*$',
@@ -103,10 +103,10 @@ class Code(object):
             )
             
             j += 1
-        pass
+
     
         return line, j - 1
-    pass
+
 
     def cppParser(self, srcFileName, extCmd, outFileName):
         #self.tempFiles.append(outFileName + '.' + self.type)
@@ -130,7 +130,7 @@ class Code(object):
                 if (inputParrotInfo[0]):
                     foundParrotInput = True
                     inputLoc = (i, j) 
-                pass
+
             else:
                 outputParrotInfo = self.parseParrotPragma(line, self.PRAGMA_PARROT_OUTPUT_KEYWORD)
                 if (outputParrotInfo[0]):
@@ -141,17 +141,17 @@ class Code(object):
                         
                         print(errMsg)    
                         return False
-                    pass
+
                     inputParrotInfo[0] = inputLoc
                     outputParrotInfo[0] = (i, j)
                     foundParrotInput = False
                     self.regions.append((inputParrotInfo, outputParrotInfo))
-                pass
-            pass
-        pass
+
+
+
     
         return True
-    pass
+
 
     def cppProbes(self, cfg):
         src = self.src
@@ -170,24 +170,24 @@ class Code(object):
                     if (var[1] != None): probeStr += ', ' + var[1]
                     probeStr += ', ' + var[2][0] + ', ' + var[2][1] 
                     probeStr += ');\n'
-                pass
+
             
                 src.insert(loc[i ^ 1] + 1 + j * 2, probeStr)
-            pass
-        pass
+
+
     
         probeStr = '#include "' + cfg['parrotoLib'] + '"\n'
         probeStr += 'extern ' + cfg['parrotoClass'] + ' ' + cfg['parrotoObj'] + ';\n\n'
         src.insert(0, probeStr)
     
         return src
-    pass
+
                     
     def cppCompiler(self, extCmd, outFileName):
         cmd = extCmd + ' ' + self.tempFiles[-1] + ' -o ' + outFileName
         print(cmd)
         os.system(cmd)
-    pass 
+ 
 
     parsers = {
         'c':   cppParser,
@@ -218,21 +218,21 @@ class Code(object):
         self.tempFiles.append(srcFileName)
         
         self.parsers[self.type](self, srcFileName, extCmd, outFileName)
-    pass
+
 
     def insertProbes(self, cfg):
         return self.probes[self.type](self, cfg)
-    pass
+
 
     def compile(self, extCmd, outFileName):
         return self.compilers[self.type](self, extCmd, outFileName)
-    pass 
+ 
 
-pass
+
 
 if __name__ == '__main__':
     codeRegions = Code()
     codeRegions.find('kooft.hot.cpp')
     
     exit(0)
-pass
+

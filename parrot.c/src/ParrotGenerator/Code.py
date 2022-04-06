@@ -10,11 +10,11 @@ class Code(object):
     def __init__(self):
         self.insts = []
         self.vVars = {}
-    pass
+
 
     def append(self, inst):
         self.insts.append(inst)
-    pass
+
 
     def __str__(self):
         s = ''
@@ -25,18 +25,18 @@ class Code(object):
                 s += '#'*32 + '\n'
             else:
                 s += str(i) + '\n'
-            pass
-        pass
+
+
 
         return s
-    pass
+
 
     def toCpp(self, path, nn, targetConfig, vectorMode):
         try: f = open(path, 'w')
         except:
             print('Error: Oops! Cannot open ' + path + '!')
             return False
-        pass
+
 
         #TODO: parrot should be nn.name
         s  = '/*\n'
@@ -68,13 +68,13 @@ class Code(object):
                     while i < len(self.vVars[v]):
                         s += ', ' + self.vVars[v][i]
                         i += 1
-                    pass
+
                     while i < targetConfig.get('vectorWidth'):
                         s += ', ' + str(0.)
                         i += 1
-                    pass
+
                     s += '}'
-                pass
+
                 s += ';\n'
             s += 'static ' + dataType + ' ' + 'y_tmp' + '[' + str(targetConfig.get('vectorWidth')) + '] __attribute__ ((aligned(32)));\n'
             s += '\n'
@@ -82,14 +82,14 @@ class Code(object):
             for v, n in Var.varTrack.items():
                 s += 'static ' + dataType + ' ' + v + '[' + str(n) + '];\n'
             s += '\n'
-        pass
+
 
         s += '/** ' + ' -> '.join([str(l) for l in nn.nNeurons]) + ' */\n'
         s += 'void ' + 'parrot' + '(' + dataType + '* x, ' + dataType + '* y) {\n'
 
         for i in self.insts:
             s += i.cppGens[i.opr](i, targetConfig.get('dataType')) + '\n'
-        pass
+
 
         s += '\treturn;\n'
         s += '}\n'
@@ -98,8 +98,8 @@ class Code(object):
 
         f.close()
         return True
-    pass
 
 
-pass
+
+
 

@@ -8,11 +8,11 @@ import math
 
 def linear(x, m):
     return m * x
-pass
+
 
 def dLinear(x, y, m):
     return m
-pass
+
 
 def sigmoid(x, m):
     x = x * m
@@ -24,11 +24,11 @@ def sigmoid(x, m):
 
     return 1./(1. + math.exp(-2. * x))
     return math.tanh(x)#((1 - math.exp(-x))/(1 + math.exp(-x)))
-pass
+
 
 def dSigmoid(x, y, m):
     return (2. * m * y * (1. - y));
-pass
+
 
 def sigmoidSymmetric(x, m):
     x = x * m
@@ -39,11 +39,11 @@ def sigmoidSymmetric(x, m):
         x = -xLimit;
 
     return (2./(1. + math.exp(-2. * x)) - 1.0)
-pass
+
 
 def dSigmoidSymmetric(x, y, m):
     return m * (1. - (y * y))
-pass
+
 
 f = {
     'LINEAR':                     (linear, dLinear),
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     print(f['sigmoid'][1](-100, f['sigmoid'][0](-100, 10), 10))
     
     exit(0)
-pass
+
 
 
 

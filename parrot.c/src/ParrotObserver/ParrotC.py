@@ -16,11 +16,11 @@ class ParrotC(object):
         self.cfg.load(args.config)
 
         self.code = Code()
-    pass
+
 
     def actionCompile(self, extCmd, outFileName):
         self.code.compile(extCmd, outFileName)
-    pass
+
 
     def actionObserve(self, extCmd, outFileName):
         print('Parrot Observer')
@@ -36,15 +36,15 @@ class ParrotC(object):
         self.actionCompile(extCmd, outFileName)
         
         return True
-    pass
+
     
     def actionTrain(self, extCmd, outFileName):
         return True
-    pass
+
 
     def actionSubstitute(self, extCmd, outFileName):
         return True
-    pass
+
     
     actions = {
         'compile':    actionCompile,
@@ -64,18 +64,17 @@ class ParrotC(object):
                     cmd = 'mv ' + temp + ' ' + temp + '.tmp'
                 print(cmd)
                 os.system(cmd)
-            pass
+
         except:
             print(('Error! Oops: Action not found! Please specify one of the following: ' 
                   + ','.join(iter(self.actions.keys()))))
             return
-        pass
-    pass
+
+
 
     
-pass
+
 
 if __name__ == '__main__':
     parrotc = ParrotC('ParrotC.json')
     parrotc.act('kooft.hot.cpp', 'observe')
-pass

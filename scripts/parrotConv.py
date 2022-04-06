@@ -24,7 +24,7 @@ def printUsage():
 
 def findFileName(filename):
     matchObj = re.match( r'()', filename)
-pass;
+
 
 def listCppFiles(dir):
     fileList = []
@@ -35,7 +35,7 @@ def listCppFiles(dir):
             fileList.append(f[:-(len(f)-extLoc)])
             extList.append(f[extLoc+1:])
     return (fileList, extList)
-pass;
+
 
 def parseParrotArgs(args):
         args = re.sub(',\s+', ',', args)
@@ -53,21 +53,21 @@ def parseParrotArgs(args):
             for i in range(len(features)):
                 if ((features[i] == None) and (i != 1)):
                     features[i] = '0'
-                pass
+
             
                 if (features[i] == None):
                     continue
             
                 features[i] = re.sub('^\s+', '', features[i])
                 features[i] = re.sub('\s+$', '', features[i])
-            pass
+
 
             parrotArgs.append((features[0], features[1], (features[2], features[3])))
             #print parrotArgs[-1]
-        pass
+
     
         return parrotArgs
-pass;
+
 
 def parseParrotPragma(line, keyword):
     # process pragma
@@ -85,14 +85,14 @@ def parseParrotPragma(line, keyword):
                     
     parrotArgs = parseParrotArgs(m.group(2))
     return parrotArgs
-pass;
+
 
 def sobelReplacement(line):
     if("std::sqrt(256 * 256 + 256 * 256)" in line):
         return line.replace("std::sqrt(256 * 256 + 256 * 256)", "256")
     return line
 
-pass;
+
 
 def main():
 

@@ -17,7 +17,7 @@ class bcolors:
 def printUsage():
 	print("Usage: python qos.py <original file> <nn file>")
 	exit(1)
-pass;
+
 
 
 if(len(sys.argv) != 3):
@@ -54,6 +54,6 @@ for i in range(len(origLines)):
 		e = nominator / denominator
 
 	absError += e
-pass;
+
 
 print(bcolors.FAIL	+ "*** Error: %1.8f" % (absError/float(len(origLines))) + bcolors.ENDC)

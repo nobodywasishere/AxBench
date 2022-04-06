@@ -28,7 +28,7 @@ class ParrotGenerator(object):
         self.code = Code()
         self.gens[self.target](self)
         self.code.toCpp(output, self.nn, self.targetConfig, self.target == 'AVX')
-    pass
+
 
     def cpuCodeGen(self):
         print(self.targetConfig.get('vectorizationMode'))
@@ -72,11 +72,11 @@ class ParrotGenerator(object):
                     inst.src2 = Var('w', [l, j, i], True, self.nn.neurons[l - 1][j].w[i])
 
                     self.code.append(inst)
-                pass
+
                 endN = Inst('endn')
                 endN.fn = 'mult[' + str(l - 1) + '][' + str(i) + ']'
                 self.code.append(endN)
-            pass
+
 
             #Add
             for i in range(1, nNeurons[l - 1] + 1):
@@ -87,7 +87,7 @@ class ParrotGenerator(object):
                         inst.dst  = Var('a', [l, j], True)
                     else:
                         inst.dst  = Var('a', [l, j, j])
-                    pass
+
 
                     if (i == nNeurons[l - 1]):
                         if (i == 1):
@@ -98,20 +98,20 @@ class ParrotGenerator(object):
                         inst.src1 = Var('m', [l, j, 0, j + 0 * nNeurons[l]])
                     else:
                         inst.src1 = Var('a', [l, j, j])
-                    pass
+
 
                     if (i == nNeurons[l - 1]):
                         inst.src2 = Var('w', [l, j, i], True, self.nn.neurons[l - 1][j].w[i])
                     else:
                         inst.src2 = Var('m', [l, j, i, j + i * nNeurons[l]])
-                    pass
+
 
                     self.code.append(inst)
-                pass
+
                 endN = Inst('endn')
                 endN.fn = 'add[' + str(l - 1) + '][' + str(i) + ']'
                 self.code.append(endN)
-            pass
+
 
             #Act
             for j in range(nNeurons[l]):
@@ -122,32 +122,32 @@ class ParrotGenerator(object):
                     inst.dst = Var('y', [j])
                 else:
                     inst.dst = Var('n', [l, j], True)
-                pass
+
 
                 inst.src1 = Var('a', [l, j, j])
 
                 inst.src2 = Var('', [l, j, -1], False, value=self.nn.neurons[l - 1][j].activationMeta)
 
                 self.code.append(inst)
-            pass
+
 
             endL = Inst('endl')
             endL.fn = 'layer[' + str(l) + ']'
             self.code.append(endL)
-        pass
+
 
         Var.varTrack['m'] = nMult
         Var.varTrack['a'] = nAdd
         Var.varTrack['n'] = nAct
 
         print((str(self.code)))
-    pass
+
 
 
     def avxCodeGen(self):
         self.cpuCodeGen()
         self.gens[self.targetConfig.get('vectorizationMode')](self)
-    pass
+
 
     def avxHorizontolCodeGen(self):
         print(self.targetConfig.get('vectorizationMode'))
@@ -177,29 +177,29 @@ class ParrotGenerator(object):
                 i += 1
 
                 j += 1
-            pass
+
 
             (prerequisiteInsts, postInsts) = vInstruction.convertToVector(self.code)
             vInsts.extend(prerequisiteInsts)
             vInsts.append(vInstruction)
             vInsts.extend(postInsts)
-        pass
+
 
 #        print '\n'*4, '#'*64
 #        for i in vInsts:
 #            print i
-#        pass
+
 
         self.code.insts = vInsts
-    pass
+
 
     def avxVerticalCodeGen(self):
         print(self.targetConfig.get('vectorizationMode'))
-    pass
+
 
     def npuCodeGen(self):
-        pass
-    pass
+
+
 
     gens = {
         'CPU':            cpuCodeGen,
@@ -208,7 +208,7 @@ class ParrotGenerator(object):
         'AVX_Vertical':   avxVerticalCodeGen,
         'NPU':            npuCodeGen,
     }
-pass
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -227,26 +227,26 @@ if __name__ == '__main__':
         parser.print_usage()
 
         exit(-1)
-    pass
+
 
     if (args.output == None):
         print('Error: Oops! Please specify the output file!')
         parser.print_usage()
 
         exit(-1)
-    pass
+
 
     if (args.config == None):
         print('Error: Oops! Please specify the target config file!')
         parser.print_usage()
 
         exit(-1)
-    pass
+
 
     pGen = ParrotGenerator(args.input, args.output, args.target, args.config)
 
     exit(0)
-pass
+
 
 
 

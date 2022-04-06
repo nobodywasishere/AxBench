@@ -17,10 +17,10 @@ class NeuralNet(object):
             for j in range(nNeurons[i]):
                 currLayer.append(Neuron(nNeurons[i - 1]))
             self.neurons.append(currLayer)
-        pass
+
 
 #        self.randomize()
-    pass
+
 
     def toDict(self):
         d = {}
@@ -29,11 +29,11 @@ class NeuralNet(object):
             d['l' + str(i + 1)] = [n.toDict() for n in l]
 
         return d 
-    pass
+
 
     def __str__(self):
         return str(json.dumps(self.toDict(), sort_keys=True, indent=2))
-    pass
+
 
     def fromDict(self, d):
         self.nNeurons = d['nNeurons']
@@ -45,21 +45,21 @@ class NeuralNet(object):
                 n = Neuron(0)
                 n.fromDict(dN)
                 currLayer.append(n)
-            pass
+
             
             self.neurons.append(currLayer)
-        pass
-    pass
+
+
 
     def fromStr(self, s):
         self.fromDict(json.loads(str(s)))
-    pass
+
 
     def randomize(self, r = (-1.0, 1.0)):
         for l in self.neurons:
             for n in l:
                 n.randomize(r)
-    pass
+
 
     def compute(self, x):
         x = x[:]
@@ -69,17 +69,17 @@ class NeuralNet(object):
             for n in l:
                 o.append(n.compute(x))
             x = o
-        pass
+
 
         return x
-    pass
+
 
     def load(self, path):
         try: f = open(path)
         except: 
             print('Error: Oops! Cannot open ' + path +'!')
             return False
-        pass
+
     
         self.fromStr(f.read())
         
@@ -90,12 +90,12 @@ class NeuralNet(object):
         except: 
             print('Error: Oops! Cannot open ' + path +'!')
             return False
-        pass
+
     
         f.write(str(self.nn))
         
         f.close()
-    pass
+
 
 
 #    def backProp(self, (x, y, d), eta):
@@ -108,11 +108,11 @@ class NeuralNet(object):
 #            h.append(o)
 #            
 #            n.deltaIn = []
-#        pass
+
 #    
 #        for n in self.outputLayer:
 #            n.compute(h)
-#        pass
+
 #    
 #        err = 0
 #        for i, n in enumerate(self.outputLayer):
@@ -123,15 +123,15 @@ class NeuralNet(object):
 #            
 #            for j, delta in enumerate(n.deltaOut):
 #                self.hiddenLayer[j].deltaIn.append(delta)
-#            pass
-#        pass
+
+
 #    
 #        for n in self.hiddenLayer:
 #            n.backProp(eta, d)
-#        pass
+
 #    
 #        return err
-#    pass
+
 #        
 #    def train(self, (x, y, d), eta, epsilon, nEpoch):
 #        eta = eta / max(d) 
@@ -142,8 +142,8 @@ class NeuralNet(object):
 #                err += self.backProp((x[i], y[i], d[i]), eta)
 #            print k, err            
 #            if (err < epsilon): break
-#        pass
-#    pass
+
+
 #    
 #    def test(self, (x, y)):
 #        rmse = 0.
@@ -157,28 +157,28 @@ class NeuralNet(object):
 #            mse = mse / n
 #            
 #            rmse += mse ** 0.5
-#        pass
+
 #        n = len(y)
 #        rmse = rmse / n
 #        
 #        return rmse
-#    pass
+
     
 
     def dump(self):
         for i, n in enumerate(self.hiddenLayer):
             print(i, 'h'*64)
             print(n.w)
-        pass
+
 
         for i, n in enumerate(self.outputLayer):
             print(i, 'o'*64)
             print(n.w)
-        pass
-        print('o'*64)
-    pass
 
-pass
+        print('o'*64)
+
+
+
 
 if __name__ == '__main__':
     mode = 'WEIGHTED_AND'
@@ -220,10 +220,10 @@ if __name__ == '__main__':
             o = nn.compute(x[i])
             print('x[i]:', x[i])
             print('y[i]:', y[i], 'o:', o)
-        pass
+
     
 #        print 'rmse', nn.test((x, y))
-    pass
+
 
     if (mode == 'AND'):
         nn = NeuralNet(2, 2, 1)
@@ -274,8 +274,8 @@ if __name__ == '__main__':
             o = nn.compute(x[i])
             print(x[i])
             print(y[i], o)
-    pass
+
 
     
     exit(0)
-pass
+

@@ -17,7 +17,7 @@ class bcolors:
 def printUsage():
 	print("Usage: python qos.py <original file> <nn file>")
 	exit(1)
-pass;
+
 
 
 if(len(sys.argv) != 3):
@@ -43,6 +43,6 @@ for i in range(len(origLines)):
 	if(origItem != nnItem):
 		missPred += 1
 
-pass;
+
 
 print(bcolors.FAIL	+ "*** Error: %1.8f" % (missPred/float(len(origLines))) + bcolors.ENDC)

@@ -20,29 +20,29 @@ class Neuron(object):
         self.activationFn = activationFn
         self.activationMeta = activationMeta
         self.f = f[activationFn]
-    pass
+
 
     def toDict(self):
         return {'w': self.w, 'activationFn': self.activationFn, 'activationMeta': self.activationMeta}
-    pass
+
 
     def __str__(self):
         return str(json.dumps(self.toDict(), sort_keys=True, indent=2))
-    pass
+
 
     def fromDict(self, d):
         self.__init__(len(d['w']), d['activationFn'], d['activationMeta'])
         self.w = d['w']
-    pass
+
 
     def fromStr(self, s):
         self.fromDict(json.loads(s))
-    pass
+
 
     def randomize(self, r = (-1.0, 1.0)):
         for i in range(len(self.w)):
             self.w[i] = r[0] + random() * (r[1] - r[0])
-    pass
+
 
     def compute(self, x):
         self.x = x[0:len(self.w)]
@@ -57,7 +57,7 @@ class Neuron(object):
         self.df = self.f[1](n, o, self.activationMeta)
         
         return o
-    pass
+
 
     # d is the distribution of training data and
     # needs to be 1 unless backprop is boosted
@@ -74,15 +74,15 @@ class Neuron(object):
         for i in range(len(self.w)):
             self.w[i] = self.w[i] + eta * delta * (d * self.x[i])
             self.deltaOut[i] = delta * self.w[i]
-        pass
-    pass
+
+
 
     def calcDelta(self, y):
         self.deltaIn = [y - self.y]
         return self.deltaIn[0]
-    pass
+
     
-pass
+
 
 if __name__ == '__main__':
     mode = 'AND'
@@ -117,10 +117,10 @@ if __name__ == '__main__':
             err += 0.5 * delta ** 2 
         
             n.backProp(eta, 1)
-        pass
+
     
         print(k, err)
-    pass
+
     
     
     print(n)
@@ -137,4 +137,4 @@ if __name__ == '__main__':
     for i in range(len(x)):
         print(x[i], y[i], n.compute(x[i]))
     exit(0)    
-pass
+

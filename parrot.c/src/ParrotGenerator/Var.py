@@ -21,19 +21,19 @@ class Var(object):
             except:
                 self.desc.append(0)
                 self.varTrack[self.var] = 1
-            pass
-        pass
+
+
         
         self.value = str(value)
-    pass
+
 
     def reset(self):
         self.varTrack = {}
-    pass
+
     
     def __str__(self):
         return str(json.dumps(self.toList()))
-    pass
+
 
     def toList(self):
         l = list(self.desc)
@@ -41,7 +41,7 @@ class Var(object):
         l.insert(0, self.var)
         
         return l
-    pass
+
 
     def fromList(self, l):
         try: self.var = l[0]
@@ -52,11 +52,11 @@ class Var(object):
         
         try: self.desc = l[2:]
         except: self.desc = []
-    pass
+
 
     def fromStr(self, s):
         self.fromDict(json.loads(str(s)))
-    pass
+
 
     def name(self, dataType, vectorMode=False):
         
@@ -74,8 +74,8 @@ class Var(object):
                     return self.var + str(self.desc[-1])
                 else:
                     return '/* ' + self.var + '[' + str(self.desc[-1]) + ']' + ' */ ' + literal 
-            pass
-        pass
+
+
         
         if (self.desc[-1] < 0):
             return self.var
@@ -84,17 +84,17 @@ class Var(object):
             return self.var + str(self.desc[-1])
         else:
             return self.var + '[' + str(self.desc[-1]) + ']'
-    pass
+
 
     def isLiteral(self):
         return self.var == ''
-    pass
+
 
     def convertToVector(self):
-        pass
-    pass
+
+
     
-pass
+
 
 
 if __name__ == '__main__':
@@ -118,5 +118,5 @@ if __name__ == '__main__':
     
     operand.fromList(["w", "0.507315908911", 3, 1, 4, 37])
     print(operand)
-pass
+
     

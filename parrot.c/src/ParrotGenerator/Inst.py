@@ -16,7 +16,7 @@ class Inst(object):
         self.dst = Var('', [])
         self.src1 = Var('', [])
         self.src2 = Var('', [])
-    pass
+
 
     def toList(self):
         l = []
@@ -37,12 +37,12 @@ class Inst(object):
         else: l.append(self.src2.toList())
 
         return l
-    pass
+
 
     def __str__(self):
         return str(json.dumps(self.toList()))
         return str(json.dumps(self.toList(), sort_keys=True, indent=2))
-    pass
+
 
     def fromList(self, l):
         self.opr = l[0]
@@ -51,11 +51,11 @@ class Inst(object):
         self.dst.fromList(l[3])
         self.src1.fromList(l[4])
         self.src2from.List(l[5])
-    pass
+
 
     def fromStr(self, s):
         self.fromList(json.loads(str(s)))
-    pass
+
 
     def vectorName(self, oprList, dataType):
         name = ''
@@ -63,7 +63,7 @@ class Inst(object):
             name += '_' + opr.name(dataType, True)
 
         return name
-    pass
+
 
     def cppMult(self, dataType, tabs = 1):
         s = '\t'*tabs
@@ -74,7 +74,7 @@ class Inst(object):
             s += ' * '
             s += self.src2.name(dataType)
             s += ';'
-        pass
+
 
         if (self.type == 'v'):
             s += self.vectorName(self.dst, dataType)
@@ -85,10 +85,10 @@ class Inst(object):
             s += ', '
             s += self.vectorName(self.src2, dataType)
             s += ');'
-        pass
+
 
         return s
-    pass
+
 
     def cppAdd(self, dataType, tabs = 1):
         s = '\t'*tabs
@@ -99,7 +99,7 @@ class Inst(object):
             s += ' + '
             s += self.src2.name(dataType)
             s += ';'
-        pass
+
 
         if (self.type == 'v'):
             s += self.vectorName(self.dst, dataType)
@@ -110,10 +110,10 @@ class Inst(object):
             s += ', '
             s += self.vectorName(self.src2, dataType)
             s += ');'
-        pass
+
 
         return s
-    pass
+
 
     def cppAct(self, dataType, tabs = 1):
         s = '\t'*tabs
@@ -126,7 +126,7 @@ class Inst(object):
             s += ', '
             s += self.src2.name(dataType)
             s += ');'
-        pass
+
 
         if (self.type == 'v'):
             s += self.vectorName(self.dst, dataType)
@@ -137,20 +137,20 @@ class Inst(object):
             s += ' /*, '
             s += self.vectorName(self.src2, dataType)
             s += ' */);'
-        pass
+
 
         return s
-    pass
+
 
     def cppEndn(self, dataType, tabs = 1):
         return '\t'*tabs + '// End of neuron ' + self.fn +'\n'
-    pass
+
 
     def cppEndl(self, dataType, tabs = 1):
         s = '\t'*tabs + '// End of layer ' + self.fn + '\n'
         s += '\t'*tabs + '// ------------------------------\n'
         return s
-    pass
+
 
     def cppAvx(self, dataType, tabs = 1):
         print(self)
@@ -164,12 +164,12 @@ class Inst(object):
             s += ';'
 
             return s
-        pass
+
 
         if (self.fn != '_mm256_store_ps'):
             s += self.dst.name(dataType, False)
             s += ' = '
-        pass
+
         s += self.fn
         s += '('
         if (self.fn == '_mm256_broadcast_ss'):
@@ -193,11 +193,11 @@ class Inst(object):
         else:
             s += self.vectorName(self.src1, dataType)
             s += self.vectorName(self.src2, dataType)
-        pass
+
         s += ');'
 
         return s
-    pass
+
 
     nListCurr = []
     nListNext = []
@@ -209,9 +209,9 @@ class Inst(object):
             if (self.opr == 'endl'):
                 Inst.nListCurr = Inst.nListNext[:]
                 Inst.nListNext = []
-            pass
+
             return (pInsts, postInsts)
-        pass
+
 
         for i, oprList in enumerate([self.dst, self.src1, self.src2]):
 
@@ -233,9 +233,9 @@ class Inst(object):
                     if (code.vVars[oprId] == None):
                         continue
                 except:
-                    pass
-                pass
-            pass
+
+
+
 
             if oprClass == 'x':
                 inst = Inst('avx')
@@ -281,7 +281,7 @@ class Inst(object):
                             if (len(oprIndices) > 4):
                                 dstVar += '_tmp'
                                 code.vVars[dstVar] = None
-                            pass
+
 
                             inst.dst = Var(dstVar, [-1])
 
@@ -309,13 +309,13 @@ class Inst(object):
 
                                 inst.src2 = Var('', [-1], False, '0x02')
                                 pInsts.append(inst)
-                            pass
-                        pass
+
+
                         #x[1] = _mm256_shuffle_ps(x[0], x[0], 0xFF);
                         #x[2] = _mm256_permute2f128_ps(x[1], x[1], 0x02);
                         #x[3] = _mm256_permute2f128_ps(x[1], x[1], 0x11);
-                    pass
-                pass
+
+
             elif oprClass == 'y':
                 code.vVars[oprId] = None
 
@@ -342,13 +342,13 @@ class Inst(object):
                         inst.src1 = Var(oprClass + '_tmp', [j])
                         inst.src2 = Var('', [-1])
                         postInsts.append(inst)
-                    pass
-                pass
-            pass
-        pass
+
+
+
+
 
         return (pInsts, postInsts)
-    pass
+
 
     cppGens = {
         'mult': cppMult,
@@ -358,7 +358,7 @@ class Inst(object):
         'endl': cppEndl,
         'avx' : cppAvx,
     }
-pass
+
 
 if __name__ == '__main__':
     i = Inst('add')
@@ -370,4 +370,4 @@ if __name__ == '__main__':
     print(i.dst.name(), i.src1.name(), i.src2.name())
 
     exit(0)
-pass
+

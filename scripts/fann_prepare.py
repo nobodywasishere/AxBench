@@ -18,7 +18,7 @@ def printUsage():
 		print("Usage: python fann_prepare.py <data_in> <sampling rate> <test data fraction>")
 		print("Example: python fann_prepare.py sobel_full.data 0.01 0.3")
 		exit(1)
-pass;
+
 
 
 if(len(sys.argv) != 4):
@@ -94,7 +94,7 @@ for i in range(sampleSize):
 
 	del input_data[curr_index]
 	del output_data[curr_index]
-pass;
+
 
 # second create the train file
 trainFile.write("%d %d %d\n" % (trainSize, input_neurons, output_neurons))
@@ -109,7 +109,7 @@ for i in range(trainSize):
 
 	del sampleInputs[curr_index]
 	del sampleOutputs[curr_index]
-pass;
+
 
 # finally create the test file
 testFile.write("%d %d %d\n" % (testSize, input_neurons, output_neurons))
@@ -124,7 +124,7 @@ for i in range(testSize):
 
 	del sampleInputs[curr_index]
 	del sampleOutputs[curr_index]
-pass;
+
 
 
 sampleFile.close()

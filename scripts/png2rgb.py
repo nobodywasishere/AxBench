@@ -13,14 +13,14 @@ def png2rgb(file):
     img = r.asRGB()
     print((file, img))
     return img
-pass
+
 
 def rgb2png(img, file):
     f = open(file, 'wb')
     pngWriter = png.Writer(img[0], img[1])
     pngWriter.write(f, img[2])
     f.close()
-pass
+
 
 def rgb2gray(img):
     r = 0.30
@@ -33,12 +33,12 @@ def rgb2gray(img):
         for i in range(0, len(row), 3):
             luminance = int(r * row[i] + g * row[i+1] + b * row[i+2] + 0.5) % 256
             for j in range(3): grayRow.append(luminance)
-        pass
+
         pixels.append(tuple(grayRow))
-    pass
+
             
     return (img[0], img[1], pixels, img[3])        
-pass
+
 
 def rgbsave(img, file):
     f = open(file, 'w')
@@ -49,11 +49,11 @@ def rgbsave(img, file):
         for p in row[:-1]: 
             f.write(str(p) + ',')
         f.write(str(p) + '\n')
-    pass
+
     
     f.write('"' + str(img[3]) + '"')
     f.close()
-pass
+
 
 def rgbload(file):
     csvReader = csv.reader(open(file, 'r'), delimiter=',', quotechar='"')   
@@ -75,14 +75,14 @@ def rgbload(file):
         else: 
             row = [int(e) for e in row]
             pixels.append(tuple(row))
-        pass
+
         
         i = i + 1
-    pass
+
     
     print((width, height, meta))
     return(width, height, pixels, meta)
-pass
+
 
 
 
@@ -91,7 +91,7 @@ if __name__ == '__main__':
         print('Error: Oops! Too few arguments!')
         print(('Usage: ' + sys.argv[0] + ' OPERATION INPUT_FILE OUTPUT_FILE'))
         exit(-1)
-    pass
+
 
     opr = str(sys.argv[1])
     input = str(sys.argv[2])
@@ -100,19 +100,19 @@ if __name__ == '__main__':
     if (opr == 'rgb'):
         img = png2rgb(input)
         rgbsave(img, output)
-    pass
+
 
     if (opr == 'png'):
         img = rgbload(input)
         rgb2png(img, output)
-    pass
+
 
     if (opr == 'gray'):
         img = png2rgb(input)
         img = rgb2gray(img)
         rgb2png(img, output)
-    pass
+
     
     exit(0)
 
-pass
+

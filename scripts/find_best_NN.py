@@ -71,7 +71,7 @@ def main():
 
 	dst_file = base_path + "/fann.config/" + benchName + ".nn"
 	shutil.copy(src_file, dst_file)
-pass;
+
 
 if __name__ == "__main__":
     main()

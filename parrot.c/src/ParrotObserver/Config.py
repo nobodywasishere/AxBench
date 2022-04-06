@@ -15,14 +15,14 @@ class Config(JsonCloak):
         parrotoSection['parrotoObj'] = 'parroto'
         
         self.put('Parrot Observer', parrotoSection)
-    pass
 
-pass
+
+
 
 if __name__ == '__main__':
     cfg = Config()
     cfg.save('Config.json')
     
     exit(0)
-pass
+
         

@@ -13,7 +13,7 @@ class FannNet(object):
         self.params = JsonCloak()
 
         self.nNeurons = []
-    pass
+
 
     def load(self, path):
         try:
@@ -21,7 +21,7 @@ class FannNet(object):
         except:
             print('Error: Oops! Cannot open ' + path +'!')
             return False
-        pass
+
 
         for i, l in enumerate(f):
             l = l.replace('\n', '')
@@ -30,17 +30,17 @@ class FannNet(object):
             if (i == 0):
                 self.params.put('version', l)
                 continue
-            pass
+
 
             e = l.split('=')
 
             self.params.put(e[0], e[1])
-        pass
+
 
         self.extract()
 
         f.close()
-    pass
+
 
     def extract(self):
         layers = self.params.get('layer_sizes')
@@ -59,7 +59,7 @@ class FannNet(object):
             p = re.match('\((.+),(.+),(.+)\)', m.group(1))
             neurons.append((int(p.group(1)), int(p.group(2)), float(p.group(3))))
             m = re.match('\s*(\([^\)]+\))(.+)', nnStr)
-        pass
+
 
         j = 0
         i = 0
@@ -72,8 +72,8 @@ class FannNet(object):
             if (i == len(self.nn.neurons[j])):
                 i = 0
                 j += 1
-            pass
-        pass
+
+
 
         sStr = self.params.get('connections (connected_to_neuron, weight)')
         synapses = []
@@ -83,7 +83,7 @@ class FannNet(object):
             p = re.match('\((.+),(.+)\)', m.group(1))
             synapses.append((int(p.group(1)), float(p.group(2))))
             m = re.match('\s*(\([^\)]+\))(.+)', sStr)
-        pass
+
 
         i = 0;
         for l in self.nn.neurons:
@@ -92,27 +92,27 @@ class FannNet(object):
                     print(synapses[i])
                     n.w[j] = synapses[i][1]
                     i += 1
-                pass
-            pass
-        pass
 
-    pass
+
+
+
+
 
     def saveJson(self, path):
         self.params.save(path)
-    pass
+
 
     def saveEssence(self, path):
         try: f = open(path, 'w')
         except:
             print('Error: Oops! Cannot open ' + path +'!')
             return False
-        pass
+
 
         f.write(str(self.nn))
 
         f.close()
-    pass
+
 
     activation = [
         'LINEAR',
@@ -147,7 +147,7 @@ class FannNet(object):
     #LAYER = _libfann.LAYER
     #SHORTCUT = _libfann.SHORTCUT
 
-pass
+
 
 if __name__ == '__main__':
     fannNet = FannNet()
@@ -183,7 +183,7 @@ if __name__ == '__main__':
     print(x, y)
 
     exit(0)
-pass
+
 
 
 
