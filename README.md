@@ -7,6 +7,9 @@ explore different aspect of the approximate computing. **AxBench** is developed
 in Alternative Computing Technologies (ACT) Laboratory, Georgia Institute of
 Technology.
 
+This is an updated version to the original on [Bitbucket](https://bitbucket.org/act-lab/axbench/src/master/)
+that adds support for Python 3.6+ alongside other UI/UX and general code improvements. 
+
 ## Papers
 
 We actively work on **AxBench** to add more applications from different domains
