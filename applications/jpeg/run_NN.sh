@@ -7,6 +7,8 @@ blue='\033[0;34m'
 green='\033[0;32m'
 nc='\033[0m' # No Color
 
+mkdir -p test.data/output
+
 for f in test.data/input/*.rgb
 do
 	filename=$(basename "$f")

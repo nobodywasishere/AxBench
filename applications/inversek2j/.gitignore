@@ -1,0 +1,12 @@
+*
+!.gitignore
+!scripts
+!src
+!src.nn
+!test.data/input/theta_1000K.data
+!test.data/output/theta_1000K_inversek2j_orig.data
+!train.data/input
+!Makefile
+!Makefile_nn
+!run_NN.sh
+!run_observation.sh

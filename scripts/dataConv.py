@@ -44,11 +44,16 @@ def main():
 	n_inputs = 0
 	n_outputs = 0
 
+	if not os.path.exists(folder_name + "/../fann.data/"):
+		os.makedirs(folder_name + "/../fann.data/")
+	if not os.path.exists(folder_name + "/../../../fann.config/"):
+		os.makedirs(folder_name + "/../../../fann.config/")
+
 	output_data = folder_name + "/../fann.data/aggregated.fann"
 	activationConfig = folder_name + "/../../../fann.config/activationFunc.cfg"
 
 	# first find all the files in the folder
-	input = []
+	inputd = []
 	output = []
 	dataSize = 0
 	for file in os.listdir(folder_name):
@@ -101,7 +106,7 @@ def main():
 							value = struct.unpack('d', inf.read(8))[0]
 							#print "{} {}".format('Value:',value) #value
 						x += typeDict.get(type)
-						input.append(value)
+						inputd.append(value)
 					dataSize += 1
 				else:
 					n_outputs = ioLen
@@ -127,7 +132,7 @@ def main():
 				rangeB = struct.unpack('d', inf.read(8))[0]
 				x += 16
 
-	with open(activationConfig, 'w') as cfg:
+	with open(activationConfig, 'w+') as cfg:
 		if(((rangeA >= 0.0) and (rangeA < 1.0)) and ((rangeB >= 0.0) and (rangeB < 1.0))):
 			cfg.write("3") # sigmoid activation function
 		elif(((rangeA > -1.0) and (rangeA < 1.0)) and ((rangeB > -1.0) and (rangeB < 1.0))):
@@ -135,7 +140,7 @@ def main():
 		else:
 			cfg.write("0") # linear activation function
 				
-	with open(output_data, 'w') as outf:
+	with open(output_data, 'w+') as outf:
 		print("---------------------------------------------------------", end=' ')
 		print(bcolors.UNDERLINE + "\n# Total number of training data: %d" % (dataSize) + bcolors.ENDC)
 		print("---------------------------------------------------------")
@@ -143,7 +148,7 @@ def main():
 		for x in range(0, dataSize):
 			currInput = ""
 			for x in range(0,n_inputs):
-				currInput = currInput + " " + str(input.pop(0))
+				currInput = currInput + " " + str(inputd.pop(0))
 			outf.write("{}\n".format(currInput))
 			currOutput = ""
 			for x in range(0,n_outputs):

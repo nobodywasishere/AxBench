@@ -1,6 +1,10 @@
 #!/bin/bash
 
+set -e
+
 benchmark=blackscholes
+
+mkdir -p test.data/output
 
 for f in test.data/input/*.data
 do

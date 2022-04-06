@@ -11,7 +11,8 @@ dir_path = Path(os.path.dirname(os.path.realpath(__file__)))
 
 def checkProc(rc: int, err_str: str):
     if rc != 0:
-        raise Exception(err_str)
+        print(err_str)
+        exit(1)
     return
 
 def makeApp(app: str):

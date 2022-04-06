@@ -1,7 +1,7 @@
 #!/bin/bash
 
 rm -rf train.data/output/bin
-mkdir train.data/output/bin
+mkdir -p train.data/output/bin
 benchmark=jpeg
 
 for f in train.data/input/*.rgb

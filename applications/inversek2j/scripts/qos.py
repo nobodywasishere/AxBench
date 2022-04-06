@@ -62,5 +62,4 @@ for i in range(len(origLines)):
 
 	absError += e
 
-
 print(bcolors.FAIL	+ "*** Error: %1.8f" % (absError/len(origLines)) + bcolors.ENDC)

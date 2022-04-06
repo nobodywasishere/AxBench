@@ -1,0 +1,9 @@
+*
+!.gitignore
+!scripts
+!src
+!src.nn
+!Makefile
+!Makefile_nn
+!run_NN.sh
+!run_observation.sh

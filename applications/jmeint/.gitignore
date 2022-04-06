@@ -1,0 +1,10 @@
+/bin
+/fann.config
+/log
+/nn.configs
+/obj
+/test.data/input/jmeint_1000K.data
+/test.data/output
+/train.data/output
+/hadianeh.parroto.data
+/jmeint.json

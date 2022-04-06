@@ -1,8 +1,12 @@
 #!/bin/bash
 
+set -e
+
 rm -rf train.data/output/bin
 mkdir -p train.data/output/bin
 benchmark=jmeint
+
+mkdir -p train.data/output
 
 for f in train.data/input/*.data
 do

@@ -1,0 +1,11 @@
+*
+!.gitignore
+!scripts
+!src
+!src.nn
+!test.data/input
+!train.data/input
+!Makefile
+!Makefile_nn
+!run_NN.sh
+!run_observation.sh

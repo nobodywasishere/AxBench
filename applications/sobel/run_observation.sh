@@ -1,7 +1,9 @@
 #!/bin/bash
 
+set -e
+
 rm -rf train.data/output/bin
-mkdir train.data/output/bin
+mkdir -p train.data/output/bin
 
 for f in train.data/input/*.rgb
 do

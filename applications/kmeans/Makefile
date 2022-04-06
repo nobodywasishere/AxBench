@@ -48,6 +48,7 @@ clean:
 	@rm -rf fann.data 
 	@rm -rf log 
 	@rm -rf nn.configs 
-	@rm -rf test.data 
-	@rm -rf train.data 
-	@rm -rf *.json *.data tmp.* null *.tmp
+	@rm -rf test.data/output
+	@rm -rf train.data/output
+	@rm -rf *.json tmp.* null *.tmp
+	@rm -rf hadianeh.parroto.data

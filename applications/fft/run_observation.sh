@@ -1,7 +1,9 @@
 #!/bin/bash
 
+set -e
+
 rm -rf train.data/output/bin
-mkdir train.data/output/bin
+mkdir -p train.data/output/bin
 benchmark=fft
 
 
