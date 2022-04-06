@@ -26,9 +26,6 @@ int main(int argc, char* argv[])
 	int x;
 	int n;
 
-	#ifndef NPU_OBSERVATION
-	int x_orig ;
-	#endif
 	std::cout.precision(8);
 
 	std::string inputFilename = argv[1];

@@ -41,3 +41,11 @@ clean:
 	@rm -rf *.out
 	@rm -rf bin
 	@rm -rf obj
+
+	@rm -rf fann.config
+	@rm -rf fann.data 
+	@rm -rf log 
+	@rm -rf nn.configs 
+	@rm -rf test.data 
+	@rm -rf train.data 
+	@rm -rf *.json *.data tmp.*
