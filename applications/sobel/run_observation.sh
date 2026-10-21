@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -x
 
 rm -rf train.data/output/bin
 mkdir -p train.data/output/bin
